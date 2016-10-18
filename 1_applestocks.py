@@ -10,6 +10,7 @@ could have made from 1 purchase and 1 sale of 1 Apple stock yesterday.
 
 def get_max_profit(stock_prices_yesterday):
     diffs=[]
+    positive= 0
 
     for i in range(len(stock_prices_yesterday)-1):
         temp_diff= stock_prices_yesterday[i+1]- stock_prices_yesterday[i]
@@ -23,10 +24,13 @@ def get_max_profit(stock_prices_yesterday):
     elif all (p<0 for p in diffs):
         return max(diffs)
 
-    else: # sum consecutive positive numbers 
+    # add up consecutive positive numbers
+    else:
+        for i in range(len(diffs)-1):
+            if diffs[i] >0 and diffs[i+1] >0 :
+                positive= diffs[i] + diffs[i+1]
+        return positive
 
-
-    return diffs
 
 
 
@@ -35,8 +39,7 @@ t1=[5,5,5,5,5,5]   # price is the same at every minute of the day (i.e. profit =
 t2=[100,90,80,40,10,5]   # Only losses (negative profit). Ever price is lower than the preceding prices. Return minimum loss
 t3=[10, 7, 5, 8, 11, 9]   # One max profit.Buying for 5, selling for 11, returns 6
 t4=[10,16, 5,8,11,9]   # multiple of the same maximum profits; two cases of 6
-t5=[]   # Empty price list (error)
-test= [t1, t2, t3,t4,t5]
+test= [t1, t2, t3,t4]
 
 # answers
 t1a= 0
@@ -44,7 +47,7 @@ t2a= -5 # returns the smallest loss
 t3a= 6
 t4a= 6
 t5a= None
-answers= [t1a, t2a, t3a, t4a, t5a]
+answers= [t1a, t2a, t3a, t4a]
 
 
 for i in range(len(test)):
