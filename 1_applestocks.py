@@ -9,7 +9,24 @@ could have made from 1 purchase and 1 sale of 1 Apple stock yesterday.
 
 
 def get_max_profit(stock_prices_yesterday):
-    return
+    diffs=[]
+
+    for i in range(len(stock_prices_yesterday)-1):
+        temp_diff= stock_prices_yesterday[i+1]- stock_prices_yesterday[i]
+        diffs.append(temp_diff)
+
+    # case 1: all zeros
+    if all (p==0 for p in diffs):
+        return 0
+
+    #case 2: price only gets lower; return smallest loss
+    elif all (p<0 for p in diffs):
+        return max(diffs)
+
+    else: # sum consecutive positive numbers 
+
+
+    return diffs
 
 
 
@@ -35,4 +52,4 @@ for i in range(len(test)):
     if profit != answers[i]:
         print "For case " + str(i+1) + " expected " + str(answers[i]) + " but got " + str(profit)
     else:
-        print "Case " + str(i+1) + " works!"
+        print "Case " + str(i+1) + " works! Got: " + str(profit)
