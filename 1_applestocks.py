@@ -31,7 +31,7 @@ def get_max_profit(stock_prices_yesterday):
                 positive= diffs[i] + diffs[i+1]
         return positive
 
-
+#Analysis: O(n^2) because of the nested loop
 
 
 ## Test cases
